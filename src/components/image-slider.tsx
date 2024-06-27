@@ -29,7 +29,7 @@ const ImageSlider = () => {
               flexShrink: 1,
             }}
           >
-            {idx % 2 === 0 || idx % 3 === 0 ? (
+            {idx % 2 === 0 ? (
               <motion.img
                 exit={{ transform: 'scale3d(1, 1, 1)' }}
                 initial={{ transform: 'scale3d(1, 1, 1)' }}

@@ -2,8 +2,10 @@ import { Box, Grid, styled, Typography } from '@mui/material';
 
 const Feature = ({ title, description }: { title: string; description: string }) => (
   <BorderedBox mt={2}>
-    <Typography variant="h6">{title}</Typography>
-    <Typography variant="body2" fontSize={'14px'}>
+    <Typography variant="h6" fontSize={'24px'}>
+      {title}
+    </Typography>
+    <Typography variant="body2" fontSize={'16px'}>
       {description}
     </Typography>
   </BorderedBox>

@@ -2,6 +2,7 @@ import { ArrowForward } from '@mui/icons-material';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { motion } from 'framer-motion';
+import { MainButton } from './common/styled-components';
 
 // Styled components
 const MainStack = styled(Stack)({
@@ -25,8 +26,9 @@ const StyledButton = styled(Button)({
   color: 'white',
 });
 
-const PatientButton = styled(StyledButton)({
+const PatientButton = styled(MainButton)({
   backgroundColor: '#00BAD1',
+  color: 'white',
 });
 
 const ImageContainer = styled(Box)(({ theme }) => ({
@@ -93,7 +95,7 @@ const IconContainer = styled(Box)({
 
 const ImageList = styled(motion.div)(({ theme }) => ({
   display: 'flex',
-  overflow: 'hidden', // Hide the overflow to prevent scrollbars
+  // overflow: 'hidden', // Hide the overflow to prevent scrollbars
   cursor: 'grab', // Change the cursor to indicate draggable area
   '&:active': {
     cursor: 'grabbing', // Change the cursor when dragging
@@ -110,17 +112,23 @@ const ImageList = styled(motion.div)(({ theme }) => ({
 
 const SpecialList = () => {
   const healthCategories = [
-    { label: "Men's Health", imgSrc: '/assets/imgs/person_3.jpg' },
-    { label: "Women's Health", imgSrc: '/assets/imgs/person_3.jpg' },
+    { label: "Men's Health", imgSrc: '/assets/imgs/person_1.jpg' },
+    { label: "Women's Health", imgSrc: '/assets/imgs/person_2.jpg' },
     { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
-    { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
-    { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
+    { label: "Children's Health", imgSrc: '/assets/imgs/person_1.jpg' },
+    { label: "Children's Health", imgSrc: '/assets/imgs/person_2.jpg' },
     { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
   ];
 
   return (
     <MainStack>
-      <TextContainer flex={0.35}>
+      <TextContainer
+        flex={0.35}
+        sx={{
+          border: '1px solid black',
+          borderLeft: 'none',
+        }}
+      >
         <Typography fontSize={'40px'} lineHeight={1} fontWeight={600} gutterBottom>
           We specialize in medications for
         </Typography>
@@ -128,11 +136,11 @@ const SpecialList = () => {
           Nec purus adipiscing pellentesque ultrices in viverra amet. Sit egestas mi platea nisl est.
         </Typography>
         <Stack direction={'row'} gap={'12px'}>
-          <StyledButton>Register as Provider</StyledButton>
+          <MainButton sx={{ color: 'white' }}>Register as Provider</MainButton>
           <PatientButton>Register as Patient</PatientButton>
         </Stack>
       </TextContainer>
-      <ImageList drag="x" dragConstraints={{ left: -300, right: 0 }} initial={{ x: 0 }}>
+      <ImageList drag="x" initial={{ x: 0 }}>
         {healthCategories.map((category, idx) => (
           <ImageContainer key={idx}>
             <Image
@@ -141,6 +149,7 @@ const SpecialList = () => {
               whileDrag={{ scale: 1.1 }}
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 300 }}
+              dragConstraints={{ left: -300, right: 0 }}
             />
             <InfoBox>
               <Typography fontSize={'16px'}>{category.label}</Typography>

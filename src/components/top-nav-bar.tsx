@@ -1,4 +1,3 @@
-import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
@@ -13,9 +12,9 @@ import {
   Toolbar,
   useMediaQuery,
 } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
-
+import { MainButton } from './common/styled-components';
 const TopNavBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -43,9 +42,9 @@ const TopNavBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black' }}>
-        <Toolbar sx={{ justifyContent: 'space-between', boxShadow: 3 }}>
+        <Toolbar sx={{ justifyContent: 'space-between', boxShadow: 2, padding: '14px 50px' }}>
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <HomeWorkIcon sx={{ width: 40 }} />
+            <img src="/assets/imgs/group.png" />
           </IconButton>
           {isMobile ? (
             <React.Fragment>
@@ -59,17 +58,34 @@ const TopNavBar = () => {
           ) : (
             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
               <Stack direction="row" spacing={2}>
-                <Button color="inherit">Home</Button>
-                <Button color="inherit">About</Button>
-                <Button color="inherit">Services</Button>
-                <Button color="inherit">Contact</Button>
+                <LinkStyledButton variant="text" color="inherit">
+                  Home
+                </LinkStyledButton>
+                <LinkStyledButton variant="text" color="inherit">
+                  Catalog
+                </LinkStyledButton>
+                <LinkStyledButton variant="text" color="inherit">
+                  About
+                </LinkStyledButton>
+                <LinkStyledButton variant="text" color="inherit">
+                  Facility tour
+                </LinkStyledButton>
+                <LinkStyledButton variant="text" color="inherit">
+                  Patients
+                </LinkStyledButton>
+                <LinkStyledButton variant="text" color="inherit">
+                  Providers
+                </LinkStyledButton>
+                <LinkStyledButton variant="text" color="inherit">
+                  Contact Us
+                </LinkStyledButton>
               </Stack>
             </Box>
           )}
           {!isMobile && (
             <Stack direction="row" spacing={2}>
-              <Button color="inherit">Login</Button>
-              <Button color="inherit">Register</Button>
+              <Button variant="text">Login</Button>
+              <MainButton sx={{ color: 'white' }}>Register</MainButton>
             </Stack>
           )}
         </Toolbar>
@@ -79,3 +95,15 @@ const TopNavBar = () => {
 };
 
 export default TopNavBar;
+const LinkStyledButton = styled(Button)(() => ({
+  '&:hover': {
+    color: '#194894',
+    textDecoration: 'underline',
+    boxShadow: 'none',
+    backgroundColor: 'transparent',
+  },
+  fontSize: '16px',
+  fontWeight: 500,
+  lineHeight: '26px',
+  textTransform: 'none',
+}));
