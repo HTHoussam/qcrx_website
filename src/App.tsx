@@ -6,7 +6,25 @@ function App() {
   return (
     <>
       <TopNavBar />
-      <Box sx={{ backgroundColor: 'transparent', paddingX: 8, paddingY: 12 }}>
+      <Box
+        sx={{
+          backgroundColor: 'transparent',
+          paddingX: {
+            xs: 2, // 0-600px
+            sm: 4, // 600-960px
+            md: 6, // 960-1280px
+            lg: 8, // 1280-1920px
+            xl: 10, // 1920px and up
+          },
+          paddingY: {
+            xs: 4,
+            sm: 6,
+            md: 8,
+            lg: 10,
+            xl: 12,
+          },
+        }}
+      >
         <HomeContent />
       </Box>
     </>

@@ -5,6 +5,7 @@ import DoctorCard from './doctor-card';
 import FeaturesSection from './features-section';
 import ImageSlider from './image-slider';
 import SpecialList from './special-list';
+import TourComponent from './tour-component';
 
 const HomeContent = () => {
   return (
@@ -47,6 +48,7 @@ const HomeContent = () => {
       </Box>
       <DoctorCard />
       <SpecialList />
+      <TourComponent />
       {/* <Stack flexDirection={'row'} minHeight={'450px'}>
         <Stack
           sx={{

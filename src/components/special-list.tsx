@@ -1,4 +1,4 @@
-import ImportContacts from '@mui/icons-material/ImportContacts';
+import { ArrowForward } from '@mui/icons-material';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { motion } from 'framer-motion';
@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 const MainStack = styled(Stack)({
   flexDirection: 'row',
   minHeight: '450px',
+  overflow: 'hidden',
+  // padding: '0.5rem',
 });
 
 const TextContainer = styled(Stack)({
@@ -27,7 +29,7 @@ const PatientButton = styled(StyledButton)({
   backgroundColor: '#00BAD1',
 });
 
-const ImageContainer = styled(Box)({
+const ImageContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'end',
@@ -42,7 +44,13 @@ const ImageContainer = styled(Box)({
     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
   },
   width: 'calc(33.333% - 24px)', // Ensure the containers fit within the viewport width
-});
+  [theme.breakpoints.down('md')]: {
+    width: 'calc(50% - 24px)',
+  },
+  [theme.breakpoints.down('sm')]: {
+    width: 'calc(100% - 24px)',
+  },
+}));
 
 const Image = styled(motion.img)({
   objectFit: 'cover',
@@ -50,7 +58,7 @@ const Image = styled(motion.img)({
   width: '100%',
 });
 
-const InfoBox = styled(Stack)({
+const InfoBox = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
   justifyContent: 'space-between',
   backgroundColor: '#FFFFFF',
@@ -65,7 +73,13 @@ const InfoBox = styled(Stack)({
   padding: '4px 12px',
   color: '#194894',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-});
+  [theme.breakpoints.down('sm')]: {
+    width: '90%',
+    bottom: 8,
+    height: '40px',
+    padding: '2px 8px',
+  },
+}));
 
 const IconContainer = styled(Box)({
   width: '32px',
@@ -77,7 +91,7 @@ const IconContainer = styled(Box)({
   justifyContent: 'center',
 });
 
-const ImageList = styled(motion.div)({
+const ImageList = styled(motion.div)(({ theme }) => ({
   display: 'flex',
   overflow: 'hidden', // Hide the overflow to prevent scrollbars
   cursor: 'grab', // Change the cursor to indicate draggable area
@@ -85,16 +99,23 @@ const ImageList = styled(motion.div)({
     cursor: 'grabbing', // Change the cursor when dragging
   },
   flex: 1,
-});
+  // flexWrap: 'wrap',
+  gap: '20px',
+  [theme.breakpoints.down('sm')]: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '12px',
+  },
+}));
 
-const MainComponent = () => {
+const SpecialList = () => {
   const healthCategories = [
     { label: "Men's Health", imgSrc: '/assets/imgs/person_3.jpg' },
-    { label: "Women's Health", imgSrc: '/assets/imgs/person_4.jpg' },
-    { label: "Children's Health", imgSrc: '/assets/imgs/person_5.jpg' },
-    { label: "Children's Health", imgSrc: '/assets/imgs/person_5.jpg' },
-    { label: "Children's Health", imgSrc: '/assets/imgs/person_5.jpg' },
-    { label: "Children's Health", imgSrc: '/assets/imgs/person_5.jpg' },
+    { label: "Women's Health", imgSrc: '/assets/imgs/person_3.jpg' },
+    { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
+    { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
+    { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
+    { label: "Children's Health", imgSrc: '/assets/imgs/person_3.jpg' },
   ];
 
   return (
@@ -124,7 +145,7 @@ const MainComponent = () => {
             <InfoBox>
               <Typography fontSize={'16px'}>{category.label}</Typography>
               <IconContainer>
-                <ImportContacts sx={{ width: '20px', height: '20px', color: 'white' }} />
+                <ArrowForward sx={{ width: '20px', height: '20px', color: 'white' }} />
               </IconContainer>
             </InfoBox>
           </ImageContainer>
@@ -134,4 +155,4 @@ const MainComponent = () => {
   );
 };
 
-export default MainComponent;
+export default SpecialList;

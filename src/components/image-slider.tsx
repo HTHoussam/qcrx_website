@@ -14,7 +14,7 @@ const ImageSlider = () => {
       <CarouselContent
         initial={{ x: 0 }}
         animate={{ x: ['0%', '-100%'] }}
-        transition={{ duration: 10, ease: 'linear', repeat: Infinity, repeatType: 'reverse' }}
+        transition={{ duration: 10, ease: 'linear', repeat: Infinity, repeatType: 'loop' }}
       >
         {imagesList.map((image, idx) => (
           <div
@@ -29,23 +29,33 @@ const ImageSlider = () => {
               flexShrink: 1,
             }}
           >
-            <motion.img
-              exit={{ transform: 'scale3d(1, 1, 1)' }}
-              initial={{ transform: 'scale3d(1, 1, 1)' }}
-              whileHover={{
-                transform: 'scale3d(1.1, 1.13, 1)',
-                zIndex: 500,
-              }}
-              transition={{
-                ease: 'backInOut',
-                duration: 0.5,
-              }}
-              src={`/assets/imgs/${image}.jpg`}
-              alt={image}
-              height={'490px'}
-              width="430px"
-              style={{ alignSelf: 'end', borderRadius: 26, transformOrigin: 'bottom right' }}
-            />
+            {idx % 2 === 0 || idx % 3 === 0 ? (
+              <motion.img
+                exit={{ transform: 'scale3d(1, 1, 1)' }}
+                initial={{ transform: 'scale3d(1, 1, 1)' }}
+                whileInView={{
+                  transform: ['scale3d(1, 1, 1)', 'scale3d(1.1, 1.13, 1)', 'scale3d(1.1, 1.13, 1)', 'scale3d(1, 1, 1)'],
+                  zIndex: 500,
+                }}
+                transition={{
+                  ease: 'backInOut',
+                  duration: 2,
+                }}
+                src={`/assets/imgs/${image}.jpg`}
+                alt={image}
+                height={'490px'}
+                width="430px"
+                style={{ alignSelf: 'end', borderRadius: 26, transformOrigin: 'bottom right' }}
+              />
+            ) : (
+              <img
+                src={`/assets/imgs/${image}.jpg`}
+                alt={image}
+                height={'490px'}
+                width="430px"
+                style={{ alignSelf: 'end', borderRadius: 26, transformOrigin: 'bottom right' }}
+              />
+            )}
           </div>
         ))}
       </CarouselContent>
